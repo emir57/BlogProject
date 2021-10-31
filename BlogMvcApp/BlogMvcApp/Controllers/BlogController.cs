@@ -20,7 +20,7 @@ namespace BlogMvcApp.Controllers
         public async Task<ActionResult> Index()
         {
             var blogs = db.Blogs.Include(b => b.Category);
-            return View(await blogs.ToListAsync());
+            return View(await blogs.OrderByDescending(a=>a.AddingDate).ToListAsync());
         }
 
         // GET: Blogs/Details/5
@@ -50,10 +50,11 @@ namespace BlogMvcApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Title,Description,Picture,Content,AddingDate,IsOk,IsHomePage,CategoryId")] Blog blog)
+        public async Task<ActionResult> Create([Bind(Include = "Id,Title,Description,Picture,Content,IsOk,IsHomePage,CategoryId")] Blog blog)
         {
             if (ModelState.IsValid)
             {
+                blog.AddingDate = DateTime.Now;
                 db.Blogs.Add(blog);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
