@@ -5,7 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
-namespace BlogMvcApp.Models.Context.EntityFrameworkContext
+namespace BlogMvcApp.Models.EntityFramework.Context
 {
     public class BlogContext : DbContext
     {
