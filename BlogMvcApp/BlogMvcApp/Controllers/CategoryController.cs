@@ -14,8 +14,9 @@ namespace BlogMvcApp.Controllers
         private BlogContext db = new BlogContext();
 
         // GET: Category
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(string message)
         {
+            ViewBag.message = message;
             var categories = await db.Categories.Select(a => new CategoryModel
             {
                 CategoryName = a.CategoryName,
@@ -84,13 +85,13 @@ namespace BlogMvcApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "CategoryName")] Category category)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,CategoryName")] Category category)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(category).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index",new {@message="Başarıyla güncellendi." });
             }
             return View(category);
         }
