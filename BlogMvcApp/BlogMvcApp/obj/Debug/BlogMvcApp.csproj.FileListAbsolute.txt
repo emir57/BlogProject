@@ -51,3 +51,7 @@ C:\Users\lolem\Documents\GitHub\BlogProject\BlogMvcApp\BlogMvcApp\obj\Debug\Blog
 C:\Users\lolem\Documents\GitHub\BlogProject\BlogMvcApp\BlogMvcApp\obj\Debug\BlogMvcApp.csproj.CopyComplete
 C:\Users\lolem\Documents\GitHub\BlogProject\BlogMvcApp\BlogMvcApp\obj\Debug\BlogMvcApp.dll
 C:\Users\lolem\Documents\GitHub\BlogProject\BlogMvcApp\BlogMvcApp\obj\Debug\BlogMvcApp.pdb
+C:\Users\lolem\Documents\GitHub\BlogProject\BlogMvcApp\BlogMvcApp\bin\EntityFramework.dll
+C:\Users\lolem\Documents\GitHub\BlogProject\BlogMvcApp\BlogMvcApp\bin\EntityFramework.SqlServer.dll
+C:\Users\lolem\Documents\GitHub\BlogProject\BlogMvcApp\BlogMvcApp\bin\EntityFramework.xml
+C:\Users\lolem\Documents\GitHub\BlogProject\BlogMvcApp\BlogMvcApp\bin\EntityFramework.SqlServer.xml

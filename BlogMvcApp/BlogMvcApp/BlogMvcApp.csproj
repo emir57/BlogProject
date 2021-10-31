@@ -126,7 +126,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Context\EntityFrameworkContext\BlogContext.cs" />
+    <Compile Include="Models\EntityFramework\BlogInitializer.cs" />
+    <Compile Include="Models\EntityFramework\Context\BlogContext.cs" />
     <Compile Include="Models\Entities\Blog.cs" />
     <Compile Include="Models\Entities\Category.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
