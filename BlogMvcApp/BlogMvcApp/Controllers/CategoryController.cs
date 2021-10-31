@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using BlogMvcApp.Models.Entities;
+using BlogMvcApp.Models.EntityFramework.Context;
+using BlogMvcApp.Models.ViewModels;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
-using System.Web;
+using System.Threading.Tasks;
 using System.Web.Mvc;
-using BlogMvcApp.Models.Entities;
-using BlogMvcApp.Models.EntityFramework.Context;
 
 namespace BlogMvcApp.Controllers
 {
@@ -19,7 +16,14 @@ namespace BlogMvcApp.Controllers
         // GET: Category
         public async Task<ActionResult> Index()
         {
-            return View(await db.Categories.ToListAsync());
+            var categories = await db.Categories.Select(a => new CategoryModel
+            {
+                CategoryName = a.CategoryName,
+                CategoryId = a.Id,
+                BlogCount = a.Blogs.Count
+            }).ToListAsync();
+            
+            return View(categories);
         }
 
         // GET: Category/Details/5
