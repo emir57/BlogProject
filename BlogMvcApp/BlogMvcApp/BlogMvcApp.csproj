@@ -131,6 +131,7 @@
     <Compile Include="Models\EntityFramework\Context\BlogContext.cs" />
     <Compile Include="Models\Entities\Blog.cs" />
     <Compile Include="Models\Entities\Category.cs" />
+    <Compile Include="Models\ViewModels\BlogModel.cs" />
     <Compile Include="Models\ViewModels\CategoryModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

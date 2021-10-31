@@ -1,12 +1,39 @@
-﻿@model IEnumerable<BlogMvcApp.Models.Entities.Blog>
+﻿@model IEnumerable<BlogMvcApp.Models.ViewModels.BlogModel>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Ana Sayfa";
 }
 
-<h2>Index</h2>
+<h2>Blog Listesi</h2>
 
-@foreach (var item in Model)
-{
-    <p>@item.Title</p>
-}
+<div class="row">
+    <div class="col-8">
+        @foreach (var blog in Model)
+        {
+            <div class="blogItem mb-4">
+                <h3 class="page-header">@blog.Title</h3>
+                <p>
+                    <span class="glyphiocn glyphiocn-time"></span>
+                    <span class="text-black text-muted">@blog.AddingDate.ToShortDateString()</span>
+                </p>
+                <hr />
+                <img class="img-responsive" src="https://via.placeholder.com/600x300" />
+                <hr />
+                <p>
+                    @blog.Description
+                </p>
+                <button class="btn btn-primary">More...</button>
+            </div>
+        }
+    </div>
+    <div class="col-4">
+        @foreach (var category in ViewBag.categories)
+        {
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action">@category.CategoryName</a>
+            </div>
+        }
+    </div>
+</div>
+
+
 
