@@ -16,5 +16,8 @@ namespace BlogMvcApp.Models.ViewModels
         public bool IsOk { get; set; }
         public bool IsHomePage { get; set; }
 
+        public string CategoryName { get; set; }
+        public string Content { get; set; }
+
     }
 }

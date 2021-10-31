@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using BlogMvcApp.Models.Entities;
 using BlogMvcApp.Models.EntityFramework.Context;
+using BlogMvcApp.Models.ViewModels;
 
 namespace BlogMvcApp.Controllers
 {
@@ -31,7 +32,18 @@ namespace BlogMvcApp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Blog blog = await db.Blogs.FindAsync(id);
+            var blog = await db.Blogs
+                .Select(a => new BlogModel
+                {
+                    Id= a.Id,
+                    Title=a.Title,
+                    Description= a.Description,
+                    Content= a.Content,
+                    AddingDate= a.AddingDate,
+                    Picture= a.Picture,
+                    CategoryName= a.Category.CategoryName
+                }).FirstOrDefaultAsync(a => a.Id == id);
+            
             if (blog == null)
             {
                 return HttpNotFound();
