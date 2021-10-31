@@ -17,8 +17,9 @@ namespace BlogMvcApp.Controllers
         private BlogContext db = new BlogContext();
 
         // GET: Blogs
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(string message)
         {
+            ViewBag.message = message;
             var blogs = db.Blogs.Include(b => b.Category);
             return View(await blogs.OrderByDescending(a=>a.AddingDate).ToListAsync());
         }
@@ -85,13 +86,22 @@ namespace BlogMvcApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Title,Description,Picture,Content,AddingDate,IsOk,IsHomePage,CategoryId")] Blog blog)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Title,Description,Picture,Content,IsOk,IsHomePage,CategoryId")] Blog blog)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(blog).State = EntityState.Modified;
+                var findBlog = db.Blogs.FirstOrDefault(a => a.Id == blog.Id);
+                findBlog.Title = blog.Title;
+                findBlog.Picture = blog.Picture;
+                findBlog.Description = blog.Description;
+                findBlog.Content = blog.Content;
+                findBlog.CategoryId = blog.CategoryId;
+                findBlog.IsHomePage = blog.IsHomePage;
+                findBlog.IsOk = blog.IsOk;
+
+                db.Entry(findBlog).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index",new {@message="Başarıyla Güncellendi." });
             }
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "CategoryName", blog.CategoryId);
             return View(blog);
