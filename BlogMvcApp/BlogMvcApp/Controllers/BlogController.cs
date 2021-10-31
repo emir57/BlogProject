@@ -12,7 +12,7 @@ using BlogMvcApp.Models.EntityFramework.Context;
 
 namespace BlogMvcApp.Controllers
 {
-    public class BlogsController : Controller
+    public class BlogController : Controller
     {
         private BlogContext db = new BlogContext();
 
